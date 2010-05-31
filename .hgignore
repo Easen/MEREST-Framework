@@ -1,0 +1,18 @@
+syntax:glob
+
+# Xcode user state
+*.mode1v3
+*.pbxuser
+
+# Random stuff
+\#*
+\._*
+*~
+*.orig
+.DS_Store
+
+# Eclipse Project
+*.project
+
+# Build products
+demo/src/MEREST\ Demo/build
