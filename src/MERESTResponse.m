@@ -8,6 +8,8 @@
 
 #import "MERESTResponse.h"
 
+static NSArray *ValidContentTypesJSON = [[NSArray alloc] initWithObjects:@"application/json", @"text/json"];
+static NSArray *ValidContentTypesXML = [[NSArray alloc] initWithObjects:@"application/xml", @"text/xml"];
 
 @interface MERESTResponse (Private)
 
@@ -39,11 +41,25 @@
     if (self != nil) {
         restRequest = [aRestRequest retain];
         statusCode = MERESTRequestHTTPStatusCodeInvalid;
-        headers = nil;
+        
         if (aUrlResponse != nil && [aUrlResponse isKindOfClass:[NSHTTPURLResponse class]]) {
            [self setStatusCode:(NSInteger)[aUrlResponse performSelector:@selector(statusCode)]];
-            headers = [aUrlResponse performSelector:@selector(allHeaderFields)];
+            headers = [[aUrlResponse performSelector:@selector(allHeaderFields)] retain];
+        } else {
+            headers = [[NSDictionary dictionary] retain];
         }
+        
+        if ([headers objectForKey:@"Content-type"]) {
+            contentType = MERESTResponseContentTypeInvalid;
+            
+            NSString *stringContentType = [(NSString *)[headers objectForKey:@"Content-type"] lowercaseString];
+            if ([ValidContentTypesJSON indexOfObjectIdenticalTo:contentType] != NSNotFound) {
+                contentType = MERESTResponseContentTypeJSON;
+            } else if ([ValidContentTypesXML indexOfObjectIdenticalTo:contentType] != NSNotFound) {
+                contentType = MERESTResponseContentTypeXML;
+            }
+        }
+
         if (aData != nil) {
             data = [aData retain];
         }

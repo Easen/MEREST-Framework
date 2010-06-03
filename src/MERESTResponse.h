@@ -9,81 +9,89 @@
 #import <Foundation/Foundation.h>
 
 typedef enum{
-	MERESTRequestHTTPStatusCodeInvalid = -1,
+	MERESTResponseHTTPStatusCodeInvalid = -1,
 	
-	MERESTRequestHTTPStatusCodeInformationalContinue = 100,
-	MERESTRequestHTTPStatusCodeInformationalSwitchingProtocols = 101,
-	MERESTRequestHTTPStatusCodeInformationalProcessing = 102,
+	MERESTResponseHTTPStatusCodeInformationalContinue = 100,
+	MERESTResponseHTTPStatusCodeInformationalSwitchingProtocols = 101,
+	MERESTResponseHTTPStatusCodeInformationalProcessing = 102,
 	
-	MERESTRequestHTTPStatusCodeSuccessOK = 200,
-	MERESTRequestHTTPStatusCodeSuccessCreated = 201,
-	MERESTRequestHTTPStatusCodeSuccessAccepted = 202,
-	MERESTRequestHTTPStatusCodeSuccessNonAuthoritativeInformation = 203,
-	MERESTRequestHTTPStatusCodeSuccessNoContent = 204,
-	MERESTRequestHTTPStatusCodeSuccessResetContent = 205,
-	MERESTRequestHTTPStatusCodeSuccessPartialContent = 206,
-	MERESTRequestHTTPStatusCodeSuccessMultiStatus = 207,
+	MERESTResponseHTTPStatusCodeSuccessOK = 200,
+	MERESTResponseHTTPStatusCodeSuccessCreated = 201,
+	MERESTResponseHTTPStatusCodeSuccessAccepted = 202,
+	MERESTResponseHTTPStatusCodeSuccessNonAuthoritativeInformation = 203,
+	MERESTResponseHTTPStatusCodeSuccessNoContent = 204,
+	MERESTResponseHTTPStatusCodeSuccessResetContent = 205,
+	MERESTResponseHTTPStatusCodeSuccessPartialContent = 206,
+	MERESTResponseHTTPStatusCodeSuccessMultiStatus = 207,
 	
-	MERESTRequestHTTPStatusCodeRedirectionMultipleChoices = 300,
-	MERESTRequestHTTPStatusCodeRedirectionMovedPermanently = 301,
-	MERESTRequestHTTPStatusCodeRedirectionFound = 302,
-	MERESTRequestHTTPStatusCodeRedirectionSeeOther = 303,
-	MERESTRequestHTTPStatusCodeRedirectionNotModified = 304,
-	MERESTRequestHTTPStatusCodeRedirectionUseProxy = 305,
-	MERESTRequestHTTPStatusCodeRedirectionSwitchProxy = 306,
-	MERESTRequestHTTPStatusCodeRedirectionTemporaryRedirect = 307,
+	MERESTResponseHTTPStatusCodeRedirectionMultipleChoices = 300,
+	MERESTResponseHTTPStatusCodeRedirectionMovedPermanently = 301,
+	MERESTResponseHTTPStatusCodeRedirectionFound = 302,
+	MERESTResponseHTTPStatusCodeRedirectionSeeOther = 303,
+	MERESTResponseHTTPStatusCodeRedirectionNotModified = 304,
+	MERESTResponseHTTPStatusCodeRedirectionUseProxy = 305,
+	MERESTResponseHTTPStatusCodeRedirectionSwitchProxy = 306,
+	MERESTResponseHTTPStatusCodeRedirectionTemporaryRedirect = 307,
 	
-	MERESTRequestHTTPStatusCodeClientErrorBadRequest = 400,
-	MERESTRequestHTTPStatusCodeClientErrorUnauthorized = 401,
-	MERESTRequestHTTPStatusCodeClientErrorPaymentRequired = 402,
-	MERESTRequestHTTPStatusCodeClientErrorForbidden = 403,
-	MERESTRequestHTTPStatusCodeClientErrorNotFound = 404,
-	MERESTRequestHTTPStatusCodeClientErrorMethodNotAllowed = 405,
-	MERESTRequestHTTPStatusCodeClientErrorNotAcceptable = 406,
-	MERESTRequestHTTPStatusCodeClientErrorProxyAuthenticationRequired = 407,
-	MERESTRequestHTTPStatusCodeClientErrorRequestTimeout = 408,
-	MERESTRequestHTTPStatusCodeClientErrorConflict = 409,
-	MERESTRequestHTTPStatusCodeClientErrorGone = 410,
-	MERESTRequestHTTPStatusCodeClientErrorLengthRequired = 411,
-	MERESTRequestHTTPStatusCodeClientErrorPreconditionFailed = 412,
-	MERESTRequestHTTPStatusCodeClientErrorRequestEntityTooLarge = 413,
-	MERESTRequestHTTPStatusCodeClientErrorRequestURITooLong = 414,
-	MERESTRequestHTTPStatusCodeClientErrorUnsupportedMediaType = 415,
-	MERESTRequestHTTPStatusCodeClientErrorRequestedRangeNotSatisfiable = 416,
-	MERESTRequestHTTPStatusCodeClientErrorExpectationFailed = 417,
-	MERESTRequestHTTPStatusCodeClientErrorImATeapot = 418,
-	MERESTRequestHTTPStatusCodeClientErrorUnprocessableEntity = 422,
-	MERESTRequestHTTPStatusCodeClientErrorLocked = 423,
-	MERESTRequestHTTPStatusCodeClientErrorFailedDependency = 424,
-	MERESTRequestHTTPStatusCodeClientErrorUnorderedCollection = 425,
-	MERESTRequestHTTPStatusCodeClientErrorUpgradeRequired = 426,
-	MERESTRequestHTTPStatusCodeClientErrorRetryWith = 449,
-	MERESTRequestHTTPStatusCodeClientErrorBlockedByWindowsParentalControls = 450,
-	MERESTRequestHTTPStatusCodeClientErrorWebLimitAccessError = 455,
+	MERESTResponseHTTPStatusCodeClientErrorBadRequest = 400,
+	MERESTResponseHTTPStatusCodeClientErrorUnauthorized = 401,
+	MERESTResponseHTTPStatusCodeClientErrorPaymentRequired = 402,
+	MERESTResponseHTTPStatusCodeClientErrorForbidden = 403,
+	MERESTResponseHTTPStatusCodeClientErrorNotFound = 404,
+	MERESTResponseHTTPStatusCodeClientErrorMethodNotAllowed = 405,
+	MERESTResponseHTTPStatusCodeClientErrorNotAcceptable = 406,
+	MERESTResponseHTTPStatusCodeClientErrorProxyAuthenticationRequired = 407,
+	MERESTResponseHTTPStatusCodeClientErrorRequestTimeout = 408,
+	MERESTResponseHTTPStatusCodeClientErrorConflict = 409,
+	MERESTResponseHTTPStatusCodeClientErrorGone = 410,
+	MERESTResponseHTTPStatusCodeClientErrorLengthRequired = 411,
+	MERESTResponseHTTPStatusCodeClientErrorPreconditionFailed = 412,
+	MERESTResponseHTTPStatusCodeClientErrorRequestEntityTooLarge = 413,
+	MERESTResponseHTTPStatusCodeClientErrorRequestURITooLong = 414,
+	MERESTResponseHTTPStatusCodeClientErrorUnsupportedMediaType = 415,
+	MERESTResponseHTTPStatusCodeClientErrorRequestedRangeNotSatisfiable = 416,
+	MERESTResponseHTTPStatusCodeClientErrorExpectationFailed = 417,
+	MERESTResponseHTTPStatusCodeClientErrorImATeapot = 418,
+	MERESTResponseHTTPStatusCodeClientErrorUnprocessableEntity = 422,
+	MERESTResponseHTTPStatusCodeClientErrorLocked = 423,
+	MERESTResponseHTTPStatusCodeClientErrorFailedDependency = 424,
+	MERESTResponseHTTPStatusCodeClientErrorUnorderedCollection = 425,
+	MERESTResponseHTTPStatusCodeClientErrorUpgradeRequired = 426,
+	MERESTResponseHTTPStatusCodeClientErrorRetryWith = 449,
+	MERESTResponseHTTPStatusCodeClientErrorBlockedByWindowsParentalControls = 450,
+	MERESTResponseHTTPStatusCodeClientErrorWebLimitAccessError = 455,
 	
-	MERESTRequestHTTPStatusCodeServerErrorInternalServerError = 500,
-	MERESTRequestHTTPStatusCodeServerErrorNotImplemented = 501,
-	MERESTRequestHTTPStatusCodeServerErrorBadGateway = 502,
-	MERESTRequestHTTPStatusCodeServerErrorServiceUnavailable = 503,
-	MERESTRequestHTTPStatusCodeServerErrorGatewayTimeout = 504,
-	MERESTRequestHTTPStatusCodeServerErrorHTTPVersionNotSupported = 505,
-	MERESTRequestHTTPStatusCodeServerErrorVariantAlsoNegotiates = 506,
-	MERESTRequestHTTPStatusCodeServerErrorInsufficientStorage = 507,
-	MERESTRequestHTTPStatusCodeServerErrorBandwidthLimitExceeded = 509,
-	MERESTRequestHTTPStatusCodeServerErrorNotExtended = 510	
-} MERESTRequestHTTPStatusCode;
+	MERESTResponseHTTPStatusCodeServerErrorInternalServerError = 500,
+	MERESTResponseHTTPStatusCodeServerErrorNotImplemented = 501,
+	MERESTResponseHTTPStatusCodeServerErrorBadGateway = 502,
+	MERESTResponseHTTPStatusCodeServerErrorServiceUnavailable = 503,
+	MERESTResponseHTTPStatusCodeServerErrorGatewayTimeout = 504,
+	MERESTResponseHTTPStatusCodeServerErrorHTTPVersionNotSupported = 505,
+	MERESTResponseHTTPStatusCodeServerErrorVariantAlsoNegotiates = 506,
+	MERESTResponseHTTPStatusCodeServerErrorInsufficientStorage = 507,
+	MERESTResponseHTTPStatusCodeServerErrorBandwidthLimitExceeded = 509,
+	MERESTResponseHTTPStatusCodeServerErrorNotExtended = 510	
+} MERESTResponseHTTPStatusCode;
+
+
+typedef enum {
+    MERESTResponseContentTypeInvalid = -1,
+    MERESTResponseContentTypeJSON = 1,
+    MERESTResponseContentTypeXML = 2
+} MERESTResponseContentType;
 
 @class MERESTRequest;
 
 @interface MERESTResponse : NSObject {
     MERESTRequest *restRequest;
-    MERESTRequestHTTPStatusCode statusCode;
+    MERESTResponseHTTPStatusCode statusCode;
+    MERESTResponseContentType contentType;
     NSDictionary *headers;
     NSData *data;
 }
 
 @property (readonly) MERESTRequest *restRequest;
-@property (readonly) MERESTRequestHTTPStatusCode statusCode;
+@property (readonly) MERESTResponseHTTPStatusCode statusCode;
 @property (readonly) NSDictionary *headers;
 @property (readonly) NSData *data;
 
