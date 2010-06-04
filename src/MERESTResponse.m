@@ -7,9 +7,8 @@
 //
 
 #import "MERESTResponse.h"
-
-static NSArray *ValidContentTypesJSON = [[NSArray alloc] initWithObjects:@"application/json", @"text/json"];
-static NSArray *ValidContentTypesXML = [[NSArray alloc] initWithObjects:@"application/xml", @"text/xml"];
+#import "MERESTAbstractModel.h"
+#import "JSON.h"
 
 @interface MERESTResponse (Private)
 
@@ -38,9 +37,9 @@ static NSArray *ValidContentTypesXML = [[NSArray alloc] initWithObjects:@"applic
                       data:(NSData *)aData
 {
     self = [super init];
-    if (self != nil) {
+    if (self != nil) {        
         restRequest = [aRestRequest retain];
-        statusCode = MERESTRequestHTTPStatusCodeInvalid;
+        statusCode = MERESTResponseHTTPStatusCodeInvalid;
         
         if (aUrlResponse != nil && [aUrlResponse isKindOfClass:[NSHTTPURLResponse class]]) {
            [self setStatusCode:(NSInteger)[aUrlResponse performSelector:@selector(statusCode)]];
@@ -49,13 +48,13 @@ static NSArray *ValidContentTypesXML = [[NSArray alloc] initWithObjects:@"applic
             headers = [[NSDictionary dictionary] retain];
         }
         
-        if ([headers objectForKey:@"Content-type"]) {
+        if ([headers objectForKey:@"Content-Type"]) {
             contentType = MERESTResponseContentTypeInvalid;
             
-            NSString *stringContentType = [(NSString *)[headers objectForKey:@"Content-type"] lowercaseString];
-            if ([ValidContentTypesJSON indexOfObjectIdenticalTo:contentType] != NSNotFound) {
+            NSString *stringContentType = [(NSString *)[headers objectForKey:@"Content-Type"] lowercaseString];
+            if ([stringContentType isEqualToString:@"application/json"]) {
                 contentType = MERESTResponseContentTypeJSON;
-            } else if ([ValidContentTypesXML indexOfObjectIdenticalTo:contentType] != NSNotFound) {
+            } else if ([stringContentType isEqualToString:@"text/xml"]) {
                 contentType = MERESTResponseContentTypeXML;
             }
         }
@@ -70,7 +69,22 @@ static NSArray *ValidContentTypesXML = [[NSArray alloc] initWithObjects:@"applic
 
 - (id) dataObjectUsingClass:(Class) aClass
 {
-    // @todo
+    id dataObject = [aClass alloc];
+    if ([dataObject isMemberOfClass:[MERESTAbstractModel class]]) {
+        return nil;
+    }
+    NSString *stringData = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding]; 
+    if (contentType == MERESTResponseContentTypeJSON) {
+        
+        NSError *errorParsing = nil;
+        SBJSON *jsonParser = [[SBJSON alloc] init];
+        id parsedJsonObject = [jsonParser objectWithString:stringData error:&errorParsing];
+        
+        if (errorParsing == noErr) {
+            return [(MERESTAbstractModel *)dataObject initWithValue:parsedJsonObject];
+        }
+        [dataObject release];
+    }
     return nil;
 }
 

@@ -8,6 +8,7 @@
 
 #import "MEREST_DemoAppDelegate.h"
 #import "RootViewController.h"
+#import "StreetCollection.h"
 
 
 @implementation MEREST_DemoAppDelegate
@@ -22,7 +23,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
     // Override point for customization after app launch    
     
-    MERESTRequest *request = [[MERESTRequest alloc] initWithURL:[NSURL URLWithString:@"/demo"]
+    MERESTRequest *request = [[MERESTRequest alloc] initWithURL:[NSURL URLWithString:@"/street"]
                                                          method:MERESTRequestMethodGet];
     MERESTClient *client = [[MERESTClient alloc] initWithBaseURL:[NSURL URLWithString:@"http://rest-demo.local"]];
     [client performRequest:request withDelegate:self];
@@ -53,6 +54,8 @@
 - (void) meRESTClient:(MERESTClient *)client requestSuccessful:(MERESTRequest *)request
 {
     NSLog(@"response = %@", request.restResponse.data);
+    StreetCollection *collection = [request.restResponse dataObjectUsingClass:[StreetCollection class]];
+    NSLog(@"Street collection = %@", collection);
 }
 
 - (void) meRESTClient:(MERESTClient *)client requestFailed:(MERESTRequest *)request withError:(NSError *)error
