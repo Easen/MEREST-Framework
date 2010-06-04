@@ -3,6 +3,7 @@ syntax:glob
 # Xcode user state
 *.mode1v3
 *.pbxuser
+*.perspectivev3
 
 # Random stuff
 \#*
@@ -13,6 +14,7 @@ syntax:glob
 
 # Eclipse Project
 *.project
+.settings
 
 # Build products
 demo/src/MEREST\ Demo/build
