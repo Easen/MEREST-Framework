@@ -45,19 +45,19 @@
 		28F335F01007B36200424DE2 /* RootViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = RootViewController.xib; path = ../RootViewController.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* MEREST_Demo-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MEREST_Demo-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
-		A087F32411B85D3300B669A4 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSON.h; path = ../../../externals/SBJSON/Source/JSON.h; sourceTree = SOURCE_ROOT; };
-		A087F32511B85D3300B669A4 /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+SBJSON.h"; path = "../../../externals/SBJSON/Source/NSObject+SBJSON.h"; sourceTree = SOURCE_ROOT; };
-		A087F32611B85D3300B669A4 /* NSObject+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+SBJSON.m"; path = "../../../externals/SBJSON/Source/NSObject+SBJSON.m"; sourceTree = SOURCE_ROOT; };
-		A087F32711B85D3300B669A4 /* NSString+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+SBJSON.h"; path = "../../../externals/SBJSON/Source/NSString+SBJSON.h"; sourceTree = SOURCE_ROOT; };
-		A087F32811B85D3300B669A4 /* NSString+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+SBJSON.m"; path = "../../../externals/SBJSON/Source/NSString+SBJSON.m"; sourceTree = SOURCE_ROOT; };
-		A087F32911B85D3300B669A4 /* SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJSON.h; path = ../../../externals/SBJSON/Source/SBJSON.h; sourceTree = SOURCE_ROOT; };
-		A087F32A11B85D3300B669A4 /* SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBJSON.m; path = ../../../externals/SBJSON/Source/SBJSON.m; sourceTree = SOURCE_ROOT; };
-		A087F32B11B85D3300B669A4 /* SBJsonBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJsonBase.h; path = ../../../externals/SBJSON/Source/SBJsonBase.h; sourceTree = SOURCE_ROOT; };
-		A087F32C11B85D3300B669A4 /* SBJsonBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBJsonBase.m; path = ../../../externals/SBJSON/Source/SBJsonBase.m; sourceTree = SOURCE_ROOT; };
-		A087F32D11B85D3300B669A4 /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJsonParser.h; path = ../../../externals/SBJSON/Source/SBJsonParser.h; sourceTree = SOURCE_ROOT; };
-		A087F32E11B85D3300B669A4 /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBJsonParser.m; path = ../../../externals/SBJSON/Source/SBJsonParser.m; sourceTree = SOURCE_ROOT; };
-		A087F32F11B85D3300B669A4 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJsonWriter.h; path = ../../../externals/SBJSON/Source/SBJsonWriter.h; sourceTree = SOURCE_ROOT; };
-		A087F33011B85D3300B669A4 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBJsonWriter.m; path = ../../../externals/SBJSON/Source/SBJsonWriter.m; sourceTree = SOURCE_ROOT; };
+		A087F32411B85D3300B669A4 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
+		A087F32511B85D3300B669A4 /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSON.h"; sourceTree = "<group>"; };
+		A087F32611B85D3300B669A4 /* NSObject+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJSON.m"; sourceTree = "<group>"; };
+		A087F32711B85D3300B669A4 /* NSString+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SBJSON.h"; sourceTree = "<group>"; };
+		A087F32811B85D3300B669A4 /* NSString+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SBJSON.m"; sourceTree = "<group>"; };
+		A087F32911B85D3300B669A4 /* SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJSON.h; sourceTree = "<group>"; };
+		A087F32A11B85D3300B669A4 /* SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJSON.m; sourceTree = "<group>"; };
+		A087F32B11B85D3300B669A4 /* SBJsonBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonBase.h; sourceTree = "<group>"; };
+		A087F32C11B85D3300B669A4 /* SBJsonBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonBase.m; sourceTree = "<group>"; };
+		A087F32D11B85D3300B669A4 /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonParser.h; sourceTree = "<group>"; };
+		A087F32E11B85D3300B669A4 /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
+		A087F32F11B85D3300B669A4 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
+		A087F33011B85D3300B669A4 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
 		A09328BA11B3FD3B00A2E638 /* MERESTRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MERESTRequest.h; sourceTree = "<group>"; };
 		A09328BB11B3FD3B00A2E638 /* MERESTRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MERESTRequest.m; sourceTree = "<group>"; };
 		A09328BD11B3FD4600A2E638 /* MERESTResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MERESTResponse.h; sourceTree = "<group>"; };
@@ -157,12 +157,12 @@
 		A087F2F811B85BE700B669A4 /* Externals */ = {
 			isa = PBXGroup;
 			children = (
-				A087F31511B85C0000B669A4 /* SBJSON */,
+				A087F31511B85C0000B669A4 /* Source */,
 			);
 			name = Externals;
 			sourceTree = "<group>";
 		};
-		A087F31511B85C0000B669A4 /* SBJSON */ = {
+		A087F31511B85C0000B669A4 /* Source */ = {
 			isa = PBXGroup;
 			children = (
 				A087F32411B85D3300B669A4 /* JSON.h */,
@@ -179,7 +179,8 @@
 				A087F32F11B85D3300B669A4 /* SBJsonWriter.h */,
 				A087F33011B85D3300B669A4 /* SBJsonWriter.m */,
 			);
-			name = SBJSON;
+			name = Source;
+			path = ../../../../SBJSON/Source;
 			sourceTree = "<group>";
 		};
 		A09328B411B3FCEA00A2E638 /* MEREST */ = {
