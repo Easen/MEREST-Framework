@@ -70,9 +70,9 @@
     
     NSURL *requestURL = nil;
     if (self.baseURL != nil) {
-        requestURL = [NSURL URLWithString:[aRequest.url absoluteString]  relativeToURL:self.baseURL];
+        requestURL = [NSURL URLWithString:[aRequest.URL absoluteString]  relativeToURL:self.baseURL];
     } else {
-        requestURL = [[self.restRequest.url copy] autorelease];
+        requestURL = [[self.restRequest.URL copy] autorelease];
     }
 
     [urlRequest setURL:requestURL];

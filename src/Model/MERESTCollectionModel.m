@@ -41,12 +41,12 @@
     NSMutableArray *newArrayOfResources = [NSMutableArray arrayWithCapacity:[array count]];
     
     for (id item in array) {
-        id resouce = [resourceClass initWithValue:item ParentModel:self];
+        id resouce = [[[self classOfAResource] alloc] initWithValue:item ParentModel:self];
         [newArrayOfResources addObject:resouce];
     }
     [resourceClass release];
     [arrayOfResources release];
-    arrayOfResources = newArrayOfResources;    
+    arrayOfResources = [newArrayOfResources retain];    
 }
 
 

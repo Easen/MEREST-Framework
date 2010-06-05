@@ -11,4 +11,13 @@
 
 @implementation StreetResource
 
+@synthesize id;
+@synthesize name;
+@synthesize town;
+@synthesize houses;
+
+- (void) loadOptions {
+    isValueARESTURL = YES;
+}
+
 @end

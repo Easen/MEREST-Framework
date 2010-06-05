@@ -7,6 +7,7 @@
 //
 
 #import "MERESTResponse.h"
+#import "MERESTRequest.h"
 #import "MERESTAbstractModel.h"
 #import "JSON.h"
 
@@ -20,6 +21,7 @@
 @implementation MERESTResponse
 
 @synthesize restRequest;
+@synthesize URL;
 @synthesize statusCode;
 @synthesize headers;
 @synthesize data;
@@ -44,6 +46,7 @@
         if (aUrlResponse != nil && [aUrlResponse isKindOfClass:[NSHTTPURLResponse class]]) {
            [self setStatusCode:(NSInteger)[aUrlResponse performSelector:@selector(statusCode)]];
             headers = [[aUrlResponse performSelector:@selector(allHeaderFields)] retain];
+            URL = [[aUrlResponse URL] retain];
         } else {
             headers = [[NSDictionary dictionary] retain];
         }
@@ -80,11 +83,13 @@
         SBJSON *jsonParser = [[SBJSON alloc] init];
         id parsedJsonObject = [jsonParser objectWithString:stringData error:&errorParsing];
         
+        [(MERESTAbstractModel *) dataObject setURL:self.URL];
+        
         if (errorParsing == noErr) {
-            return [(MERESTAbstractModel *)dataObject initWithValue:parsedJsonObject];
+            return [[(MERESTAbstractModel *)dataObject initWithValue:parsedJsonObject] autorelease];
         }
-        [dataObject release];
     }
+    [dataObject release];
     return nil;
 }
 

@@ -11,7 +11,7 @@
 
 @implementation MERESTRequest
 
-@synthesize url;
+@synthesize URL;
 @synthesize method;
 @synthesize query;
 @synthesize data;
@@ -32,7 +32,7 @@
 {
     self = [super init];
     if (self != nil) {
-        self.url = aURL;
+        self.URL = aURL;
         self.method = aMethod;
         self.query = aQuery;
         self.data = aData;

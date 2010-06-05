@@ -18,7 +18,7 @@ typedef enum {
 }MERESTRequestMethod;
 
 @interface MERESTRequest : NSObject {
-    NSURL *url;
+    NSURL *URL;
     MERESTRequestMethod method;
     NSDictionary *query;
     NSData *data;
@@ -27,7 +27,7 @@ typedef enum {
     MERESTResponse *restResponse;
 }
 
-@property (nonatomic, retain) NSURL *url;
+@property (nonatomic, retain) NSURL *URL;
 @property (nonatomic, assign) MERESTRequestMethod method;
 @property (nonatomic, retain) NSDictionary *query;
 @property (nonatomic, retain) NSData *data;

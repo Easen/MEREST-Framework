@@ -84,6 +84,7 @@ typedef enum {
 
 @interface MERESTResponse : NSObject {
     MERESTRequest *restRequest;
+    NSURL *URL;
     MERESTResponseHTTPStatusCode statusCode;
     MERESTResponseContentType contentType;
     NSDictionary *headers;
@@ -91,6 +92,7 @@ typedef enum {
 }
 
 @property (readonly) MERESTRequest *restRequest;
+@property (readonly) NSURL *URL;
 @property (readonly) MERESTResponseHTTPStatusCode statusCode;
 @property (readonly) NSDictionary *headers;
 @property (readonly) NSData *data;

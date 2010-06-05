@@ -10,17 +10,23 @@
 
 
 @interface MERESTAbstractModel : NSObject {
+    NSURL *URL;
     id value;
     MERESTAbstractModel *parentModel; 
-    
+@protected
+    BOOL isValueARESTURL;
 }
 
+@property (nonatomic, retain) NSURL *URL;
 @property (nonatomic, readonly) id value;
 @property (nonatomic, readonly) MERESTAbstractModel *parentModel;
 
 - (id) init;
 - (id) initWithValue:(id)aValue;
 - (id) initWithValue:(id)aValue ParentModel:(MERESTAbstractModel *) aParentModel;
+
+- (void) loadOptions;
 - (void) populate;
+
 
 @end

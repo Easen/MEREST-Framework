@@ -9,8 +9,18 @@
 #import <Foundation/Foundation.h>
 #import "MERESTResourceModel.h"
 
-@interface StreetResource : MERESTResourceModel {
+@class HousesCollection;
 
+@interface StreetResource : MERESTResourceModel {
+    NSNumber *id;
+    NSString *name;
+    NSString *town;
+    HousesCollection *houses;
 }
+
+@property (nonatomic, assign) NSNumber *id;
+@property (nonatomic, assign) NSString *name;
+@property (nonatomic, assign) NSString *town;
+@property (nonatomic, assign) HousesCollection *houses;
 
 @end

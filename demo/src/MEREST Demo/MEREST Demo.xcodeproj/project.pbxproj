@@ -15,6 +15,8 @@
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
 		28C286E10D94DF7D0034E888 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */; };
 		28F335F11007B36200424DE2 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28F335F01007B36200424DE2 /* RootViewController.xib */; };
+		A012FC7311BACBC90038D23A /* HousesCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = A012FC7211BACBC90038D23A /* HousesCollection.m */; };
+		A012FC7811BACC8F0038D23A /* HouseResource.m in Sources */ = {isa = PBXBuildFile; fileRef = A012FC7711BACC8F0038D23A /* HouseResource.m */; };
 		A087F33111B85D3300B669A4 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = A087F32611B85D3300B669A4 /* NSObject+SBJSON.m */; };
 		A087F33211B85D3300B669A4 /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = A087F32811B85D3300B669A4 /* NSString+SBJSON.m */; };
 		A087F33311B85D3300B669A4 /* SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = A087F32A11B85D3300B669A4 /* SBJSON.m */; };
@@ -45,6 +47,10 @@
 		28F335F01007B36200424DE2 /* RootViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = RootViewController.xib; path = ../RootViewController.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* MEREST_Demo-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MEREST_Demo-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		A012FC7111BACBC90038D23A /* HousesCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HousesCollection.h; sourceTree = "<group>"; };
+		A012FC7211BACBC90038D23A /* HousesCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HousesCollection.m; sourceTree = "<group>"; };
+		A012FC7611BACC8F0038D23A /* HouseResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseResource.h; sourceTree = "<group>"; };
+		A012FC7711BACC8F0038D23A /* HouseResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseResource.m; sourceTree = "<group>"; };
 		A087F32411B85D3300B669A4 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
 		A087F32511B85D3300B669A4 /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSON.h"; sourceTree = "<group>"; };
 		A087F32611B85D3300B669A4 /* NSObject+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJSON.m"; sourceTree = "<group>"; };
@@ -206,6 +212,10 @@
 				A0C9ABF311B84E3A00256D19 /* StreetCollection.m */,
 				A0C9AC0F11B853B500256D19 /* StreetResource.h */,
 				A0C9AC1011B853B500256D19 /* StreetResource.m */,
+				A012FC7111BACBC90038D23A /* HousesCollection.h */,
+				A012FC7211BACBC90038D23A /* HousesCollection.m */,
+				A012FC7611BACC8F0038D23A /* HouseResource.h */,
+				A012FC7711BACC8F0038D23A /* HouseResource.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -301,6 +311,8 @@
 				A087F33411B85D3300B669A4 /* SBJsonBase.m in Sources */,
 				A087F33511B85D3300B669A4 /* SBJsonParser.m in Sources */,
 				A087F33611B85D3300B669A4 /* SBJsonWriter.m in Sources */,
+				A012FC7311BACBC90038D23A /* HousesCollection.m in Sources */,
+				A012FC7811BACC8F0038D23A /* HouseResource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
