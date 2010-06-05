@@ -1,1 +1,1 @@
-externals/SBJSON = [svn]http://json-framework.googlecode.com/svn/trunk/
+SBJSON = [svn]http://json-framework.googlecode.com/svn/trunk/
