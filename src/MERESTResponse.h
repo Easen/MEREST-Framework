@@ -101,5 +101,6 @@ typedef enum {
                URLResponse:(NSURLResponse *) urlResponse 
                       data:(NSData *)data;
 - (id) dataObjectUsingClass:(Class) aClass;
+- (id) dataObjectUsingObject:(id) object;
 
 @end

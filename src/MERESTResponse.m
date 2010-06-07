@@ -73,7 +73,14 @@
 - (id) dataObjectUsingClass:(Class) aClass
 {
     id dataObject = [aClass alloc];
-    if ([dataObject isMemberOfClass:[MERESTAbstractModel class]]) {
+    id object = [self dataObjectUsingObject:dataObject];
+    [dataObject release];
+    return object;
+}
+
+- (id) dataObjectUsingObject:(id) anObject
+{
+    if ([anObject isMemberOfClass:[MERESTAbstractModel class]]) {
         return nil;
     }
     NSString *stringData = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding]; 
@@ -83,13 +90,13 @@
         SBJSON *jsonParser = [[SBJSON alloc] init];
         id parsedJsonObject = [jsonParser objectWithString:stringData error:&errorParsing];
         
-        [(MERESTAbstractModel *) dataObject setURL:self.URL];
+        [(MERESTAbstractModel *) anObject setURL:self.URL];
         
         if (errorParsing == noErr) {
-            return [[(MERESTAbstractModel *)dataObject initWithValue:parsedJsonObject] autorelease];
+            [(MERESTAbstractModel *)anObject setValue: parsedJsonObject];
+            return [anObject autorelease];
         }
     }
-    [dataObject release];
     return nil;
 }
 

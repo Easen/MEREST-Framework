@@ -10,7 +10,6 @@
 
 @interface MERESTAbstractModel (Private)
 
-- (void) populateModel;
 - (void) processOptions;
 
 @end
@@ -27,33 +26,28 @@
 @synthesize value;
 @synthesize parentModel;
 
-- (id) init
-{
-    return [self initWithValue:nil ParentModel:nil];
+- (id) init {
+    return [self initWithParentModel:nil];
 }
 
-- (id) initWithValue:(id)aValue 
-{
-    return [self initWithValue:aValue ParentModel:nil];
-}
-
-- (id) initWithValue:(id)aValue ParentModel:(MERESTAbstractModel *) aParentModel
-{
+- (id) initWithParentModel:(MERESTAbstractModel *) aParentModel {
     self = [super init];
     if (self != nil) {
-        if (aValue != nil) {
-            [value release];
-            value = [aValue retain];
-        }
         if (aParentModel != nil) {
             [parentModel release];
             parentModel = aParentModel;
         }
     }
-    [self populateModel];
+    [self loadOptions];
     return self;
 }
 
+- (void) setValue:(id)aValue {
+    value = [aValue retain];
+    [self processOptions];
+    [self populate];
+}
+    
 - (void) loadOptions {
     // Overload this method
 }
@@ -64,12 +58,6 @@
 
 #pragma mark -
 #pragma mark Private method
-
-- (void) populateModel {
-    [self loadOptions];
-    [self processOptions];
-    [self populate];
-}
 
 - (void) processOptions {
     if (isValueARESTURL == YES) {

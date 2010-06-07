@@ -15,4 +15,6 @@
 
 - (Class) classOfAResource;
 
++ (StreetCollection *)sharedInstance;
+
 @end

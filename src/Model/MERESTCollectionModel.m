@@ -33,7 +33,7 @@
     }
     
     id resourceClass = [[self classOfAResource] alloc];
-    if (![resourceClass respondsToSelector:@selector(initWithValue:ParentModel:)]) {
+    if (![resourceClass respondsToSelector:@selector(initWithParentModel:)]) {
         return;
     }
     
@@ -41,7 +41,8 @@
     NSMutableArray *newArrayOfResources = [NSMutableArray arrayWithCapacity:[array count]];
     
     for (id item in array) {
-        id resouce = [[[self classOfAResource] alloc] initWithValue:item ParentModel:self];
+        MERESTAbstractModel *resouce = [[[self classOfAResource] alloc] initWithParentModel:self];
+        [resouce setValue:item];
         [newArrayOfResources addObject:resouce];
     }
     [resourceClass release];

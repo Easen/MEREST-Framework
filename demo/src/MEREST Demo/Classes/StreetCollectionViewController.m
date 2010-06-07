@@ -6,23 +6,31 @@
 //  Copyright Marc Easen 2010. All rights reserved.
 //
 
-#import "RootViewController.h"
+#import "StreetCollectionViewController.h"
+#import "MEREST.h"
+#import "StreetResource.h"
 
-
-@implementation RootViewController
+@implementation StreetCollectionViewController
 
 
 #pragma mark -
 #pragma mark View lifecycle
 
-/*
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    model = [StreetCollection sharedInstance];
+    
+    restClient = [[MERESTClient alloc] initWithBaseURL:[NSURL URLWithString:@"http://rest-demo.local"]];
+    
+    
+    restRequestStreetCollection = [[MERESTRequest alloc] initWithURL:[NSURL URLWithString:@"/street"]
+                                                              method:MERESTRequestMethodGet];
+    
+    [restClient performRequest:restRequestStreetCollection withDelegate:self];
 }
-*/
+
 
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -65,7 +73,7 @@
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 0;
+    return (([model.arrayOfResources count] > 0) ? [model.arrayOfResources count] : 1);
 }
 
 
@@ -80,6 +88,18 @@
     }
     
 	// Configure the cell.
+    
+    if ([model.arrayOfResources count] == 0) {
+        cell.textLabel.text = @"Loading...";
+    } else {
+        StreetResource *item = [model.arrayOfResources objectAtIndex:indexPath.row];
+        if (item.name == nil) {
+            cell.textLabel.text = @"Loading...";
+        } else {
+            cell.textLabel.text = item.name;
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        }        
+    }
 
     return cell;
 }
@@ -158,6 +178,39 @@
 
 - (void)dealloc {
     [super dealloc];
+}
+
+
+#pragma mark MERESTClientProtocol methods
+- (void) meRESTClient:(MERESTClient *)client requestSuccessful:(MERESTRequest *)request
+{
+    if (request == restRequestStreetCollection) {
+        [request.restResponse dataObjectUsingClass:[StreetCollection class]];
+        
+        // Create storage arrays
+        arrayOfRestClientStreetResources = [[NSMutableArray arrayWithCapacity:[model.arrayOfResources count]] retain];
+        arrayOfRestRequestStreetResources = [[NSMutableArray arrayWithCapacity:[model.arrayOfResources count]] retain];
+        
+        for (StreetResource *item in model.arrayOfResources) {
+            MERESTRequest *restRequestStreetResource = [[[MERESTRequest alloc] initWithURL:item.URL method:MERESTRequestMethodGet] autorelease];
+            MERESTClient *restClientStreetResource = [[[MERESTClient alloc] initWithBaseURL:item.parentModel.URL] autorelease];
+            
+            [restClientStreetResource performRequest:restRequestStreetResource withDelegate:self];
+            
+            [arrayOfRestClientStreetResources addObject:restClientStreetResource]; 
+            [arrayOfRestRequestStreetResources addObject:restRequestStreetResource];
+        }
+        [self.tableView reloadData];
+    } else if(arrayOfRestRequestStreetResources != nil && [arrayOfRestRequestStreetResources containsObject:request]) {
+        NSUInteger index = [arrayOfRestRequestStreetResources indexOfObject:request];
+        [request.restResponse dataObjectUsingObject:[model.arrayOfResources objectAtIndex:index]];
+        [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:index inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+    }
+}
+
+- (void) meRESTClient:(MERESTClient *)client requestFailed:(MERESTRequest *)request withError:(NSError *)error
+{
+    NSLog(@"failed request %@, error =  %@", request, error);
 }
 
 

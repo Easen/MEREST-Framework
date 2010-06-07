@@ -7,14 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MERESTResourceModel.h"
 
-
-@interface HouseResource : NSObject {
-    NSNumber *id;
+@interface HouseResource : MERESTResourceModel {
+    NSNumber *_id;
     NSNumber *numberOfBedrooms;
     NSNumber *hasGarden;
     NSNumber *hasGarage;
 }
 
+@property (nonatomic, assign) NSNumber *id;
+@property (nonatomic, assign) NSNumber *numberOfBedrooms;
+@property (nonatomic, assign) NSNumber *hasGarden;
+@property (nonatomic, assign) NSNumber *hasGarage;
 
 @end

@@ -7,7 +7,7 @@
 //
 
 #import "MEREST_DemoAppDelegate.h"
-#import "RootViewController.h"
+#import "StreetCollectionViewController.h"
 #import "StreetCollection.h"
 
 
@@ -21,14 +21,7 @@
 #pragma mark Application lifecycle
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
-    // Override point for customization after app launch    
-    
-    MERESTRequest *request = [[MERESTRequest alloc] initWithURL:[NSURL URLWithString:@"/street"]
-                                                         method:MERESTRequestMethodGet];
-    MERESTClient *client = [[MERESTClient alloc] initWithBaseURL:[NSURL URLWithString:@"http://rest-demo.local"]];
-    [client performRequest:request withDelegate:self];
-    
-	
+    // Override point for customization after app launch   
 	[window addSubview:[navigationController view]];
     [window makeKeyAndVisible];
 	return YES;
@@ -47,20 +40,6 @@
 	[navigationController release];
 	[window release];
 	[super dealloc];
-}
-
-
-#pragma mark MERESTClientProtocol methods
-- (void) meRESTClient:(MERESTClient *)client requestSuccessful:(MERESTRequest *)request
-{
-    NSLog(@"response = %@", request.restResponse.data);
-    StreetCollection *collection = [request.restResponse dataObjectUsingClass:[StreetCollection class]];
-    NSLog(@"Street collection = %@", collection);
-}
-
-- (void) meRESTClient:(MERESTClient *)client requestFailed:(MERESTRequest *)request withError:(NSError *)error
-{
-    NSLog(@"failed request %@, error =  %@", request, error);
 }
 
 @end

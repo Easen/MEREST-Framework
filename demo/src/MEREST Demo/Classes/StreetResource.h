@@ -12,7 +12,7 @@
 @class HousesCollection;
 
 @interface StreetResource : MERESTResourceModel {
-    NSNumber *id;
+    NSNumber *_id;
     NSString *name;
     NSString *town;
     HousesCollection *houses;
@@ -21,6 +21,8 @@
 @property (nonatomic, assign) NSNumber *id;
 @property (nonatomic, assign) NSString *name;
 @property (nonatomic, assign) NSString *town;
-@property (nonatomic, assign) HousesCollection *houses;
+@property (nonatomic, assign, setter=setHoues:) HousesCollection *houses;
+
+- (void) setHouses:(id)aValue;
 
 @end

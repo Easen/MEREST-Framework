@@ -11,4 +11,20 @@
 
 @implementation HouseResource
 
+@synthesize id=_id;
+@synthesize numberOfBedrooms;
+@synthesize hasGarden;
+@synthesize hasGarage;
+
+
+- (void) dealloc
+{
+    [_id release];
+    [numberOfBedrooms release];
+    [hasGarden release];
+    [hasGarage release];
+    [super dealloc];
+}
+
+
 @end

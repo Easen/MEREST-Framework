@@ -7,9 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MEREST.h"
 
-@interface MEREST_DemoAppDelegate : NSObject <UIApplicationDelegate, MERESTClientProtocol> {
+@interface MEREST_DemoAppDelegate : NSObject <UIApplicationDelegate> {
     
     UIWindow *window;
     UINavigationController *navigationController;
