@@ -75,7 +75,7 @@
     id dataObject = [aClass alloc];
     id object = [self dataObjectUsingObject:dataObject];
     [dataObject release];
-    return object;
+    return [object autorelease];
 }
 
 - (id) dataObjectUsingObject:(id) anObject
@@ -94,7 +94,7 @@
         
         if (errorParsing == noErr) {
             [(MERESTAbstractModel *)anObject setValue: parsedJsonObject];
-            return [anObject autorelease];
+            return anObject;
         }
     }
     return nil;
