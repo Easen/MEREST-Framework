@@ -9,6 +9,7 @@
 #import "StreetCollectionViewController.h"
 #import "MEREST.h"
 #import "StreetResource.h"
+#import "HousesCollectionViewController.h"
 
 @implementation StreetCollectionViewController
 
@@ -29,6 +30,8 @@
                                                               method:MERESTRequestMethodGet];
     
     [restClient performRequest:restRequestStreetCollection withDelegate:self];
+    
+    self.title = @"Streets";
 }
 
 
@@ -88,7 +91,6 @@
     }
     
 	// Configure the cell.
-    
     if ([model.arrayOfResources count] == 0) {
         cell.textLabel.text = @"Loading...";
     } else {
@@ -149,14 +151,15 @@
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([model.arrayOfResources count] < indexPath.row) {
+        return;
+    }
     
-	/*
-	 <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-	 [self.navigationController pushViewController:detailViewController animated:YES];
-	 [detailViewController release];
-	 */
+    StreetResource *item = [model.arrayOfResources objectAtIndex:indexPath.row];
+    HousesCollectionViewController *housesCollectionViewCollection = [[HousesCollectionViewController alloc] initWithNibName:@"HousesCollectionViewController" bundle:nil];
+    housesCollectionViewCollection.model = item.houses;
+    [self.navigationController pushViewController:housesCollectionViewCollection animated:YES];
+    [housesCollectionViewCollection release];
 }
 
 

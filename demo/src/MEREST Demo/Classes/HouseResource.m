@@ -16,6 +16,9 @@
 @synthesize hasGarden;
 @synthesize hasGarage;
 
+- (void) loadOptions {
+    isValueARESTURL = YES;
+}
 
 - (void) dealloc
 {
