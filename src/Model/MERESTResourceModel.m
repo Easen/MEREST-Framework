@@ -20,10 +20,13 @@
     NSDictionary *dictionaryValue = (NSDictionary *)value;
     
     for (NSString *stringKey in [dictionaryValue keyEnumerator]) {
-        SEL setterMethod = NSSelectorFromString([NSString stringWithFormat:@"set%@:", [stringKey capitalizedString]]);
-        if ([self respondsToSelector:setterMethod]) {
-            [self performSelector:setterMethod withObject:[dictionaryValue objectForKey:stringKey]];
+        if ([stringKey length] > 0) {
+            SEL setterMethod = NSSelectorFromString([NSString stringWithFormat:@"set%@%@:", [[stringKey substringToIndex:1] uppercaseString], [stringKey substringFromIndex:1]]);
+            if ([self respondsToSelector:setterMethod]) {
+                [self performSelector:setterMethod withObject:[dictionaryValue objectForKey:stringKey]];
+            }
         }
+        
     }
 }
 
