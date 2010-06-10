@@ -15,6 +15,7 @@
 @interface MERESTClient (Private)
 
 - (void) resetClient;
+- (void) performRequestOnNewThread;
 
 @end
 
@@ -53,34 +54,8 @@
     self.delegate = aDelegate;
     self.restRequest = aRequest;
     
-    urlRequest = [[NSMutableURLRequest alloc] init];
+    [NSThread detachNewThreadSelector:@selector(performRequestOnNewThread) toTarget:self withObject:nil];
     
-    switch (aRequest.method) {
-        case MERESTRequestMethodPost:
-            [urlRequest setHTTPMethod:@"POST"];
-        case MERESTRequestMethodPut:
-            [urlRequest setHTTPMethod:@"PUT"];
-            [urlRequest setHTTPBody:self.restRequest.data];
-        case MERESTRequestMethodGet:
-            [urlRequest setHTTPMethod:@"GET"];
-        case MERESTRequestMethodDelete:
-            [urlRequest setHTTPMethod:@"DELETE"];
-            break;
-    }
-    
-    NSURL *requestURL = nil;
-    if (self.baseURL != nil) {
-        requestURL = [NSURL URLWithString:[aRequest.URL absoluteString]  relativeToURL:self.baseURL];
-    } else {
-        requestURL = [[self.restRequest.URL copy] autorelease];
-    }
-
-    [urlRequest setURL:requestURL];
-    [urlRequest setAllHTTPHeaderFields:self.restRequest.additionalHeaders];
-    
-    dataRetrieved = [[NSMutableData alloc] init];
-    
-    urlConnection = [[NSURLConnection alloc] initWithRequest:urlRequest delegate:self startImmediately:YES];
     return YES;
     
 }
@@ -90,6 +65,9 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection 
 {
+    if ([NSThread isMainThread] == NO) {
+        return [self performSelectorOnMainThread:@selector(connectionDidFinishLoading:) withObject:connection waitUntilDone:NO];
+    }
     MERESTResponse *restResponse = [[MERESTResponse alloc] initWithRESTRequest:self.restRequest 
                                                                    URLResponse:urlResponse 
                                                                           data:dataRetrieved];
@@ -103,6 +81,10 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
+    if ([NSThread isMainThread] == NO) {
+        return [self performSelectorOnMainThread:@selector(resetClient) withObject:nil waitUntilDone:NO];
+    }
+    
     [self resetClient];
     
     [delegate meRESTClient:self requestFailed:self.restRequest withError:error];
@@ -133,6 +115,47 @@
     urlRequest = nil;
     urlResponse = nil;
     dataRetrieved = nil;
+}
+
+- (void) performRequestOnNewThread 
+{
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    
+    urlRequest = [[NSMutableURLRequest alloc] init];
+    
+    switch (self.restRequest.method) {
+        case MERESTRequestMethodPost:
+            [urlRequest setHTTPMethod:@"POST"];
+        case MERESTRequestMethodPut:
+            [urlRequest setHTTPMethod:@"PUT"];
+            [urlRequest setHTTPBody:self.restRequest.data];
+        case MERESTRequestMethodGet:
+            [urlRequest setHTTPMethod:@"GET"];
+        case MERESTRequestMethodDelete:
+            [urlRequest setHTTPMethod:@"DELETE"];
+            break;
+    }
+    
+    NSURL *requestURL = nil;
+    if (self.baseURL != nil) {
+        requestURL = [NSURL URLWithString:[self.restRequest.URL absoluteString]  relativeToURL:self.baseURL];
+    } else {
+        requestURL = [[self.restRequest.URL copy] autorelease];
+    }
+
+    [urlRequest setURL:requestURL];
+    [urlRequest setAllHTTPHeaderFields:self.restRequest.additionalHeaders];
+    [urlRequest setTimeoutInterval:5.0];
+    
+    dataRetrieved = [[NSMutableData alloc] init];
+
+    urlConnection = [[NSURLConnection alloc] initWithRequest:urlRequest delegate:self startImmediately:YES];
+
+    while(urlConnection != nil) {
+        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
+    }
+
+    [pool release];
 }
 
 @end
