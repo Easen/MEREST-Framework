@@ -87,7 +87,7 @@
     if (contentType == MERESTResponseContentTypeJSON) {
         
         NSError *errorParsing = nil;
-        SBJSON *jsonParser = [[SBJSON alloc] init];
+        SBJsonParser *jsonParser = [[SBJsonParser alloc] init];
         id parsedJsonObject = [jsonParser objectWithString:stringData error:&errorParsing];
         
         [(MERESTAbstractModel *) anObject setURL:self.URL];

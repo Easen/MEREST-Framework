@@ -19,7 +19,6 @@
 		A012FC7811BACC8F0038D23A /* HouseResource.m in Sources */ = {isa = PBXBuildFile; fileRef = A012FC7711BACC8F0038D23A /* HouseResource.m */; };
 		A087F33111B85D3300B669A4 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = A087F32611B85D3300B669A4 /* NSObject+SBJSON.m */; };
 		A087F33211B85D3300B669A4 /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = A087F32811B85D3300B669A4 /* NSString+SBJSON.m */; };
-		A087F33311B85D3300B669A4 /* SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = A087F32A11B85D3300B669A4 /* SBJSON.m */; };
 		A087F33411B85D3300B669A4 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = A087F32C11B85D3300B669A4 /* SBJsonBase.m */; };
 		A087F33511B85D3300B669A4 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = A087F32E11B85D3300B669A4 /* SBJsonParser.m */; };
 		A087F33611B85D3300B669A4 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = A087F33011B85D3300B669A4 /* SBJsonWriter.m */; };
@@ -58,8 +57,7 @@
 		A087F32611B85D3300B669A4 /* NSObject+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJSON.m"; sourceTree = "<group>"; };
 		A087F32711B85D3300B669A4 /* NSString+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SBJSON.h"; sourceTree = "<group>"; };
 		A087F32811B85D3300B669A4 /* NSString+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SBJSON.m"; sourceTree = "<group>"; };
-		A087F32911B85D3300B669A4 /* SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJSON.h; sourceTree = "<group>"; };
-		A087F32A11B85D3300B669A4 /* SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJSON.m; sourceTree = "<group>"; };
+		A087F32911B85D3300B669A4 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
 		A087F32B11B85D3300B669A4 /* SBJsonBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonBase.h; sourceTree = "<group>"; };
 		A087F32C11B85D3300B669A4 /* SBJsonBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonBase.m; sourceTree = "<group>"; };
 		A087F32D11B85D3300B669A4 /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonParser.h; sourceTree = "<group>"; };
@@ -171,12 +169,12 @@
 		A087F2F811B85BE700B669A4 /* Externals */ = {
 			isa = PBXGroup;
 			children = (
-				A087F31511B85C0000B669A4 /* Source */,
+				A087F31511B85C0000B669A4 /* Classes */,
 			);
 			name = Externals;
 			sourceTree = "<group>";
 		};
-		A087F31511B85C0000B669A4 /* Source */ = {
+		A087F31511B85C0000B669A4 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
 				A087F32411B85D3300B669A4 /* JSON.h */,
@@ -184,8 +182,7 @@
 				A087F32611B85D3300B669A4 /* NSObject+SBJSON.m */,
 				A087F32711B85D3300B669A4 /* NSString+SBJSON.h */,
 				A087F32811B85D3300B669A4 /* NSString+SBJSON.m */,
-				A087F32911B85D3300B669A4 /* SBJSON.h */,
-				A087F32A11B85D3300B669A4 /* SBJSON.m */,
+				A087F32911B85D3300B669A4 /* JSON.h */,
 				A087F32B11B85D3300B669A4 /* SBJsonBase.h */,
 				A087F32C11B85D3300B669A4 /* SBJsonBase.m */,
 				A087F32D11B85D3300B669A4 /* SBJsonParser.h */,
@@ -193,8 +190,8 @@
 				A087F32F11B85D3300B669A4 /* SBJsonWriter.h */,
 				A087F33011B85D3300B669A4 /* SBJsonWriter.m */,
 			);
-			name = Source;
-			path = ../../../../SBJSON/Source;
+			name = Classes;
+			path = "../../../../json-framework/Classes";
 			sourceTree = "<group>";
 		};
 		A09328B411B3FCEA00A2E638 /* MEREST */ = {
@@ -316,7 +313,6 @@
 				A0C9AC1111B853B500256D19 /* StreetResource.m in Sources */,
 				A087F33111B85D3300B669A4 /* NSObject+SBJSON.m in Sources */,
 				A087F33211B85D3300B669A4 /* NSString+SBJSON.m in Sources */,
-				A087F33311B85D3300B669A4 /* SBJSON.m in Sources */,
 				A087F33411B85D3300B669A4 /* SBJsonBase.m in Sources */,
 				A087F33511B85D3300B669A4 /* SBJsonParser.m in Sources */,
 				A087F33611B85D3300B669A4 /* SBJsonWriter.m in Sources */,
