@@ -1,9 +1,0 @@
-MEREST - A  RESTful framework written by Marc Easen (2010)
-
-Written in Objective-C for the iPhone / Mac OS X
-
-Features:-
-
-* Populates your modules based on the RESTful resource
-* Supports collections of reources
-* Uses native network connections libraries
