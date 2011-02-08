@@ -28,8 +28,16 @@
 
 - (void) populate
 {
+    id valueToProcess = value;
     if (value == nil || ![value isKindOfClass:[NSArray class]]) {
-        return;
+        if ([value isKindOfClass:[NSDictionary class]] && // is the value a dictionary
+            [[(NSDictionary *)value allKeys] count] == 1 && // does it contain one key value pair
+            [[[(NSDictionary *)value allValues] objectAtIndex:0] isKindOfClass:[NSArray class]]) // is that key value pair an array
+        {
+            valueToProcess = [[(NSDictionary *)value allValues] objectAtIndex:0];
+        } else {
+            return;
+        }
     }
     
     id resourceClass = [[self classOfAResource] alloc];
@@ -37,7 +45,7 @@
         return;
     }
     
-    NSArray *array = (NSArray *)value;
+    NSArray *array = (NSArray *)valueToProcess;
     NSMutableArray *newArrayOfResources = [NSMutableArray arrayWithCapacity:[array count]];
     
     for (id item in array) {
