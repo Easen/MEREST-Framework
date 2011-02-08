@@ -18,7 +18,7 @@
 }
 
 @property (nonatomic, retain) NSURL *URL;
-@property (nonatomic, assign, setter=setValue) id value;
+@property (nonatomic, assign, setter=setValue:) id value;
 @property (nonatomic, readonly) MERESTAbstractModel *parentModel;
 
 - (id) init;
