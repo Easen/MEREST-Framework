@@ -55,9 +55,14 @@
             contentType = MERESTResponseContentTypeInvalid;
             
             NSString *stringContentType = [(NSString *)[headers objectForKey:@"Content-Type"] lowercaseString];
-            if ([stringContentType isEqualToString:@"application/json"]) {
+            
+            NSRange rangeOfContentType = [stringContentType rangeOfString:@"application/json"];
+            if (rangeOfContentType.location != NSNotFound) {
                 contentType = MERESTResponseContentTypeJSON;
-            } else if ([stringContentType isEqualToString:@"text/xml"]) {
+            }
+            
+            rangeOfContentType = [stringContentType rangeOfString:@"text/xml"];
+            if (rangeOfContentType.location != NSNotFound) {
                 contentType = MERESTResponseContentTypeXML;
             }
         }
@@ -74,7 +79,6 @@
 {
     id dataObject = [aClass alloc];
     id object = [self dataObjectUsingObject:dataObject];
-    [dataObject release];
     return [object autorelease];
 }
 
