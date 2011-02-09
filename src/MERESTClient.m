@@ -114,7 +114,7 @@ static NSInteger NUMBER_OF_ACTIVE_CLIENTS = 0;
     NUMBER_OF_ACTIVE_CLIENTS--;
     if (NUMBER_OF_ACTIVE_CLIENTS == 0) {
 #if __IPHONE_OS_VERSION_MIN_REQUIRED
-        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 #endif
     }
 }
