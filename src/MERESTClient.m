@@ -12,10 +12,12 @@
 
 #define kMERESTClientDefaultTimeoutInterval 10.0
 
+static NSInteger NUMBER_OF_ACTIVE_CLIENTS = 0;
+
 @interface MERESTClient (Private)
 
 - (void) resetClient;
-- (void) performRequestOnNewThread;
+- (void) _performRequest;
 
 @end
 
@@ -54,7 +56,7 @@
     self.delegate = aDelegate;
     self.restRequest = aRequest;
     
-    [NSThread detachNewThreadSelector:@selector(performRequestOnNewThread) toTarget:self withObject:nil];
+    [self _performRequest];
     
     return YES;
     
@@ -65,9 +67,6 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection 
 {
-    if ([NSThread isMainThread] == NO) {
-        return [self performSelectorOnMainThread:@selector(connectionDidFinishLoading:) withObject:connection waitUntilDone:NO];
-    }
     MERESTResponse *restResponse = [[MERESTResponse alloc] initWithRESTRequest:self.restRequest 
                                                                    URLResponse:urlResponse 
                                                                           data:dataRetrieved];
@@ -80,11 +79,7 @@
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
-{
-    if ([NSThread isMainThread] == NO) {
-        return [self performSelectorOnMainThread:@selector(resetClient) withObject:nil waitUntilDone:NO];
-    }
-    
+{    
     [self resetClient];
     
     [delegate meRESTClient:self requestFailed:self.restRequest withError:error];
@@ -115,12 +110,17 @@
     urlRequest = nil;
     urlResponse = nil;
     dataRetrieved = nil;
+    
+    NUMBER_OF_ACTIVE_CLIENTS--;
+    if (NUMBER_OF_ACTIVE_CLIENTS == 0) {
+#if __IPHONE_OS_VERSION_MIN_REQUIRED
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+#endif
+    }
 }
 
-- (void) performRequestOnNewThread 
-{
-    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-    
+- (void) _performRequest
+{    
     urlRequest = [[NSMutableURLRequest alloc] init];
     
     switch (self.restRequest.method) {
@@ -145,17 +145,21 @@
 
     [urlRequest setURL:requestURL];
     [urlRequest setAllHTTPHeaderFields:self.restRequest.additionalHeaders];
-    [urlRequest setTimeoutInterval:5.0];
+    [urlRequest setTimeoutInterval:self.timeoutInterval];
     
     dataRetrieved = [[NSMutableData alloc] init];
 
     urlConnection = [[NSURLConnection alloc] initWithRequest:urlRequest delegate:self startImmediately:YES];
+    
 
-    while(urlConnection != nil) {
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
+    
+    NUMBER_OF_ACTIVE_CLIENTS++;
+    if (NUMBER_OF_ACTIVE_CLIENTS == 1) {
+#if __IPHONE_OS_VERSION_MIN_REQUIRED
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+#endif
     }
 
-    [pool release];
 }
 
 @end
